@@ -33,10 +33,15 @@ int main() {
     // DRAW
     window.clear();
 
+    card1.setup(window);
     card1.draw(window);
+    card2.setup(window);
     card2.draw(window);
+    card3.setup(window);
     card3.draw(window);
+    card4.setup(window);
     card4.draw(window);
+    card5.setup(window);
     card5.draw(window);
 
     window.display();

@@ -1,8 +1,8 @@
 COMPILER := clang++
-CLANG_WARNS := -Weverything -Wextra -Wno-c++98-compat -Wno-padded -Wno-global-constructors -Wno-switch-enum -Wno-shorten-64-to-32 -Wno-weak-vtables
+CLANG_WARNS := -Weverything -Wextra -Wno-c++98-compat -Wno-padded -Wno-global-constructors -Wno-switch-enum -Wno-shorten-64-to-32 -Wno-weak-vtables -Wno-missing-prototypes
 
 VERSION := -std=c++1z
-FLAGS := -O3
+FLAGS := -O3 -ggdb
 INC := -I lib/
 
 LINKS := -lsfml-graphics -lsfml-window -lsfml-system
@@ -23,4 +23,4 @@ obj/card.o: lib/card/card.cpp
 	${COMPILER} -c lib/card/card.cpp -o obj/card.o ${VERSION} ${FLAGS} ${INC} ${CLANG_WARNS}
 
 clean:
-	rm main main.o obj -r
+	rm main main.o obj/* -r

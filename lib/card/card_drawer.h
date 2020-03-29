@@ -8,13 +8,13 @@ struct Card_Visual; // Forward Declaration
 class Card_Draw_Strategy {
 public:
   virtual ~Card_Draw_Strategy() = default;
-  virtual void draw(sf::RenderWindow&, size_t idx, Card_Visual&) const = 0;
+  virtual void setup(sf::RenderWindow& window, size_t idx, Card_Visual&) = 0;
 };
 
 class Hand_Drawer : public Card_Draw_Strategy {
 public:
   ~Hand_Drawer() override = default;
-  void draw(sf::RenderWindow&, size_t idx, Card_Visual&) const override;
+  void setup(sf::RenderWindow& window, size_t idx, Card_Visual&) override;
 };
 
 /*

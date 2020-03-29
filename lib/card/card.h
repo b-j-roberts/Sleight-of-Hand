@@ -13,7 +13,8 @@ class Card {
 
 public:
   explicit Card(size_t idx);
-  void draw(sf::RenderWindow&);
+  void setup(sf::RenderWindow&);
+  void draw(sf::RenderWindow&) const;
 };
 
 #endif
