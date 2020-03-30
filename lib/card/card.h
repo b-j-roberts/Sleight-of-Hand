@@ -5,16 +5,18 @@
 
 class Card {
 
-  unsigned int cost_ = 0; // TO DO
-  size_t idx_; // TO DO
+  //size_t idx_ = 0; // TO DO
+  //std::shared_ptr<Card_Draw_Strategy> draw_strat_;
   
+  unsigned int cost_;
   Card_Visual visual_;
-  std::shared_ptr<Card_Draw_Strategy> draw_strat_;
 
 public:
-  explicit Card(size_t idx);
-  void setup(sf::RenderWindow&);
+  // params : name, image url / location, description, cost
+  Card(const std::string&, const std::string&, const std::string&, unsigned int);
+  void setup();
   void draw(sf::RenderWindow&) const;
+  friend class Card_Inventory;
 };
 
 #endif

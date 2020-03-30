@@ -1,12 +1,12 @@
 #include "card.h"
 
-Card::Card(size_t idx):
-  idx_(idx),
-  draw_strat_(std::make_shared<Hand_Drawer>()) { }
+Card::Card(const std::string& name, const std::string& img_url,
+           const std::string& desc, unsigned int cost):
+  cost_(cost),
+  visual_(name, img_url, desc, cost) { }
 
-void Card::setup(sf::RenderWindow& window) {
+void Card::setup() {
   visual_.setup();
-  draw_strat_->setup(window, idx_, visual_);
 }
 
 void Card::draw(sf::RenderWindow& window) const {

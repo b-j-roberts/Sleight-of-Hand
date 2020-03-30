@@ -1,6 +1,7 @@
 #include "card_visual.h"
 
-Card_Visual::Card_Visual() {
+Card_Visual::Card_Visual(const std::string& name, const std::string& img_loc,
+                         const std::string& desc, unsigned int cost) {
   t_.loadFromFile("rsc/Card_Template_original.jpg");
   frame_ = std::make_shared<sf::Sprite>(t_);
   frame_->setPosition(0, 0);
@@ -9,15 +10,16 @@ Card_Visual::Card_Visual() {
   name_.setFont(f_);
   name_.setFillColor(sf::Color::Black);
   name_.setCharacterSize(20);
-  name_.setString("Fireball Card");
+  name_.setString(name);
   cost_display_.setFont(f_);
   cost_display_.setFillColor(sf::Color::Black);
   cost_display_.setCharacterSize(36);
-  cost_display_.setString("15");
+  cost_display_.setString(std::to_string(cost));
   description_.setFont(f_);
   description_.setFillColor(sf::Color::Black);
   description_.setCharacterSize(12);
-  description_.setString("This is a desction \ncard. I wonder \n this work! Only\n4 lines allowed!");
+  description_.setString(desc);
+  // TO DO : IMG
 }
 
 void Card_Visual::setup() {
@@ -47,6 +49,5 @@ void Original_Frame::setup(Card_Visual& card) const {
   //card.img_->setPosition(37, 102);
   center_Text(card.cost_display_, sf::Vector2f(33, 36));
   card.cost_display_.move(15, 450);
-  center_Text(card.description_, sf::Vector2f(227, 80));
-  card.description_.move(37, 350);
+  card.description_.setPosition(37, 350);
 }

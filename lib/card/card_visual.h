@@ -4,6 +4,7 @@
 #include "card_drawer.h"
 
 #include <memory> // shared_ptr
+#include <string>
 
 class Card_Frame_Strategy; // forward declaration
 
@@ -21,7 +22,8 @@ struct Card_Visual {
   sf::Text cost_display_;
 
 
-  explicit Card_Visual(); // TO DO
+  // params: name, image url/location, description, cost
+  Card_Visual(const std::string&, const std::string&, const std::string&, unsigned int);
   void setup();
   void draw(sf::RenderWindow&) const;
 };
