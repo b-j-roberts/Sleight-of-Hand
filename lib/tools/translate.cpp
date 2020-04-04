@@ -9,7 +9,7 @@ Translate::Translate(float bx, float by, float ex, float ey):
 
 void Translate::tick() {
   if(direction == Direction::forward) {
-    if(time_ >= 1.f) direction = Direction::stop;
+    if(time_ >= 1.0f) direction = Direction::stop;
     else time_ += tick_;
   } else if(direction == Direction::backward) {
     if(time_ <= 0.f) direction = Direction::stop;

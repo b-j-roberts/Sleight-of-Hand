@@ -11,6 +11,7 @@ class Card_Frame_Strategy; // forward declaration
 struct Card_Visual {
 
   sf::Texture t_; // TO DO
+  sf::Texture t2_;
   sf::Font f_; // TO DO
 
   std::shared_ptr<sf::Sprite> frame_;

@@ -1,14 +1,21 @@
 #include "card/card_pool.h"
 #include "card/card_inventory.h"
 
+#include "map/board.h"
+#include "mobs/mob.h"
+
 int main() {
 
-  sf::VideoMode desktop = sf::VideoMode().getDesktopMode();
+  sf::VideoMode desktop = sf::VideoMode().getDesktopMode(); // TO DO : Full SCreen
   sf::RenderWindow window(desktop, "Sleight of Hand");
   window.setFramerateLimit(60);
 
-  Card_Pool card_pool("rsc/Cards.cfg");
-  Card_Inventory hand("rsc/Hand.cfg", card_pool);
+  Board board;
+
+  Card_Pool card_pool("rsc/cfg/Cards.cfg");
+  Card_Inventory hand(window, "rsc/cfg/Hand.cfg", card_pool);
+
+  Mob monster;
 
   // Game Loop
   sf::Event event;
@@ -24,12 +31,25 @@ int main() {
         default: break;
       }
     }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+      hand.forward();
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+      hand.backward();
+    }
+    //if(sf::Keyboard::isKeyPressed(sf::Keyboard::ESC)) {
+    //  window.close();
+    //}
 
     // UPDATE
+    monster.turn();
 
 
     // DRAW
     window.clear();
+
+    board.draw(window);
+    monster.draw(window);
 
     hand.display(window);
     

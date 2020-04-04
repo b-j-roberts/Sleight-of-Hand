@@ -9,8 +9,8 @@ INC := -I lib/ -I ${HARMONY_LOCATION}
 
 LINKS := -lsfml-graphics -lsfml-window -lsfml-system -L ${HARMONY_LOCATION}/Harmony -lharmony-basic
 
-main: main.o obj/card.o obj/card_drawer.o obj/card_visual.o obj/card_inventory.o obj/card_pool.o obj/translate.o
-	${COMPILER} main.o obj/card.o obj/card_drawer.o obj/card_visual.o obj/card_inventory.o obj/card_pool.o -o main ${FLAGS} ${LINKS}
+main: main.o obj/card.o obj/card_drawer.o obj/card_visual.o obj/card_inventory.o obj/card_pool.o obj/translate.o obj/board.o obj/mob.o
+	${COMPILER} main.o obj/card.o obj/card_drawer.o obj/card_visual.o obj/card_inventory.o obj/card_pool.o obj/translate.o  obj/board.o obj/mob.o -o main ${FLAGS} ${LINKS}
 
 main.o: main.cpp
 	${COMPILER} -c main.cpp ${VERSION} ${FLAGS} ${INC} ${CLANG_WARNS}
@@ -32,6 +32,12 @@ obj/card.o: lib/card/card.cpp
 
 obj/translate.o: lib/tools/translate.cpp
 	${COMPILER} -c lib/tools/translate.cpp -o obj/translate.o ${VERSION} ${FLAGS} ${INC} ${CLANG_WARNS}
+
+obj/board.o: lib/map/board.cpp
+	 ${COMPILER} -c lib/map/board.cpp -o obj/board.o ${VERSION} ${FLAGS} ${INC} ${CLANG_WARNS}
+
+obj/mob.o: lib/mobs/mob.cpp
+	 ${COMPILER} -c lib/mobs/mob.cpp -o obj/mob.o ${VERSION} ${FLAGS} ${INC} ${CLANG_WARNS}
 
 clean:
 	rm main main.o obj/* -r

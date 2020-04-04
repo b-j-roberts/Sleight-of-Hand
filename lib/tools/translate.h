@@ -9,7 +9,7 @@ class Translate {
 
   Direction direction = Direction::stop;
 
-  const float tick_ = 1.f / 60.f; // TO DO
+  const float tick_ = 2.f / 60.f; // TO DO
 
   float time_; // in seconds
   
