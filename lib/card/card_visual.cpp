@@ -5,7 +5,7 @@ Card_Visual::Card_Visual(const std::string& name, const std::string& img_loc,
   t_.loadFromFile("rsc/frames/original_frame.png");
   frame_ = std::make_shared<sf::Sprite>(t_);
   frame_strat_ = std::make_shared<Original_Frame>();
-  f_.loadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
+  f_.loadFromFile("rsc/fonts/FreeMonoBold.ttf");
   name_.setFont(f_);
   name_.setFillColor(sf::Color::Black);
   name_.setCharacterSize(16);
