@@ -1,24 +1,14 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "tile.h"
-#include "../mobs/mob.h"
-
-#include <SFML/Graphics.hpp>
 #include <vector>
 
+#include "tile.h"
+
 class Board {
-
-  sf::Texture tile_t_;
-  mutable sf::Sprite tile_;
-
-  std::vector<std::vector<Mob>> mob_map_;
-  std::vector<std::vector<Tile>> tile_map_;
-
+  std::vector<std::vector<Tile>> tiles_;
 public:
-
-  Board();
-
+  void update();
   void draw(sf::RenderWindow&) const;
 };
 
