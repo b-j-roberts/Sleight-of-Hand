@@ -9,7 +9,7 @@ class Tile {
   std::unique_ptr<Trap> trap_;
 public:
   void update();
-  void draw(sf::RenderWindow&) const;
+  void draw(sf::RenderWindow&, float, float) const;
 };
 
 #endif
