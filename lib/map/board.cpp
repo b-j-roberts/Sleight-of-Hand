@@ -25,3 +25,28 @@ void Board::draw(sf::RenderWindow& window) const {
     posy += tilesize;
   }
 }
+
+std::pair<std::shared_ptr<Map_Node>, std::shared_ptr<Map_Node>>
+    Board::create_node_map(std::vector<std::vector<std::shared_ptr<Map_Node>>>& node_map,
+                           const Mob& mob) {
+  node_map = std::vector<std::vector<std::shared_ptr<Map_Node>>>(tiles_.size());
+  std::pair<std::shared_ptr<Map_Node>, std::shared_ptr<Map_Node>> source_target_pair;
+  size_t id = 0;
+  for(size_t i = 0; const auto& row : tiles_) {
+    size_t j = 0;
+    std::transform(row.begin(), row.end(), std::back_inserter(node_map[i]), [&](const auto& tile){
+      auto ret = std::make_shared<Map_Node>();
+      ret->is_wall = mob.is_wall(tile);
+      ret->id = id++;
+      ret->posx = j++;
+      ret->posy = i;
+      ret->neighbors = /* TO DO */
+      if(/* tile has player */) source_target_pair.first = ret;
+      // default super high value for costs?
+      return ret;
+    });
+    ++i;
+  }
+  source_target_pair.second = node_map[mob.x()][mob.y()];
+  return source_target_pair;
+}

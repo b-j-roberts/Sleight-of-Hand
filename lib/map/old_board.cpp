@@ -17,3 +17,5 @@ void Board::draw(sf::RenderWindow& window) const {
     }
   }
 }
+
+std::pair<std::shared_ptr

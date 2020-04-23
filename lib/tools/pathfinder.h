@@ -9,9 +9,12 @@
 struct Map_Node {
   bool is_wall;
   const size_t id;
-
-  int f_cost;
+  const size_t posx;
+  const size_t posy;
   std::map<Direction, std::shared_ptr<Map_Node>> neighbors;
+
+  int h_cost;
+  int f_cost;
   std::shared_ptr<Map_Node> parent;
 };
 

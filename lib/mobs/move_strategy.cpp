@@ -1,10 +1,10 @@
 #include "move_strategy.h"
 
-void Basic_Move::do_turn(const Stats&) const {
- // Use A* to do movement & return distance left?
+bool Basic_Move::is_wall(const Tile& tile) const {
+  return tile.has_wall() || tile.has_mob();
 }
 
-void Climbing_Move::do_turn(const Stats&) const {
- // Go straight to enemy & return distance left?
- // Slower climbing walls?
+bool Climbing_Move::is_wall(const Tile& tile) const {
+  return tile.has_mob();
 }
+
