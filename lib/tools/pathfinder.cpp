@@ -14,9 +14,11 @@ int compute_f_cost(int h_cost_current, int posx, int posy, int desx, int desy) {
   return h_cost_current + 1 + std::abs(desx - posx) + std::abs(desy - posy);
 }
 
-void the_function(const Board& board, const Mob& mob) {
+// TO DO : Find a place for this function
+// TO DO : Clean it
+void movement_astar(const Board& board, const Mob& mob) {
   std::vector<std::vector<std::shared_ptr<Map_Node>>> node_map;
-  auto source_target_pair = board.create_node_map(node_map, mob); // TO DO: these func
+  auto source_target_pair = board.create_node_map(node_map, mob);
   source_target_pair.first->h_cost = 0;
   source_target_pair.first->f_cost = 0;
   
@@ -53,12 +55,23 @@ void the_function(const Board& board, const Mob& mob) {
   }
 
   // traceback parents from target
+  int length = 0;
+  std::stack<Direction> path;
   if(current->id == source_target_pair.second->id) {
-
+    // TO DO : h_cost is length?
+    while(current->id != source_target_pair.first->id) {
+      auto parent = current->parent;
+      for(const auto& [key, value] : parent->neighbors) {
+        if(value->id == current->id) path.push(key);
+      }
+      ++length;
+      current = parent;
+    }
   } else {
     // there is no path
   }
-
+  // resolve
+  return path;
 }
 
 // Update

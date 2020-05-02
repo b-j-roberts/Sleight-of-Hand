@@ -40,12 +40,21 @@ std::pair<std::shared_ptr<Map_Node>, std::shared_ptr<Map_Node>>
       ret->id = id++;
       ret->posx = j++;
       ret->posy = i;
-      ret->neighbors = /* TO DO */
-      if(/* tile has player */) source_target_pair.first = ret;
-      // default super high value for costs?
+      if(tile.has_player()) source_target_pair.first = ret;
+      // TO DO : default super high value for costs?
+      ret->h_cost = 100000;
+      ret->f_cost = 100000;
       return ret;
     });
     ++i;
+  }
+  for(int i = 0; i < node_map.size(); ++i) {
+    for(int j = 0; j < node_map[i].size(); ++j) {
+      if(i - 1 >= 0) node_map[i][j]->neighbors[Direction::North] = node_map[i-1][j];
+      if(i + 1 < node_map.size()) node_map[i][j]->neighbors[Direction::South] = node_map[i+1][j];
+      if(j - 1 >= 0) node_map[i][j]->neighbors[Direction::West] = node_map[i][j-1];
+      if(j + 1 < node_map[i].size()) node_map[i][j]->neighbors[Direction::East] = node_map[i][j+1];
+    }
   }
   source_target_pair.second = node_map[mob.x()][mob.y()];
   return source_target_pair;
